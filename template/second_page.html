@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flood Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+
+	<div class="topnav">
+        <a class="active" href="{{url_for('second_page')}}">Monitor</a>
+        <a class="active" href="{{url_for('index')}}" onclick="showLoginPopup()" >Admin</a>	
+        <a class="active" href="{{url_for('third_page')}}">Detail</a>
+	</div> 
+
+	<div class="heading">
+    	<h1>WELCOME TO FLOOD MONITORING & PREDICTION WEBSITE</h1> 
+		<br>   
+		<h2>The Result of Flood Prediction using K-Nearest Neighbors and Decision Tree model</h2>	
+	</div>
+  
+	<div class="outer-wrapper">
+        <div class="table-wrapper">
+            <table>
+                <thead>                    
+                    <th>Year</th>
+                    <th>Jan</th>
+                    <th>Feb</th>
+                    <th>Mar</th>
+                    <th>Apr</th>
+                    <th>May</th>
+                    <th>Jun</th>
+                    <th>Jul</th>
+                    <th>Aug</th>
+                    <th>Sep</th>
+                    <th>Oct</th>
+                    <th>Nov</th>
+                    <th>Dec</th>                    
+                    <th>Floods</th>
+                    <th>Predict_KNN</th>
+                    <th>Predict_DT</th>                    
+                </thead>
+                <tbody id="tableBody">
+                    <!-- CSV data will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </div>	
+    </div>   
+	
+	<h4>Rainfall of more than 60 mm in a period of 2 to 4 hours (typically) can cause flash flooding. However, monsoon rains for a 
+		long period of time with heavy rain alternating with high intensity in a period of 24 hours.</h4>
+
+        
+         
+    <div class="footer">
+        <p class="inline">Siti Nur Hidayah Binti Azmi</p>
+        <P class="inline">191020971</P>
+        <p class="inline">Fakulti Kejuruteraan & Teknologi Elektronik</p>
+    </div>
+
+        <script>
+            function insertCSVData() {
+                // Fetch the CSV file
+                fetch('template/kerala_with_results.csv')
+                    .then(response => response.text())
+                    .then(data => {
+                        // Split the CSV data into rows
+                        var rows = data.split('\n');
+        
+                        // Remove the header row if present
+                        rows.shift();
+        
+                        // Get the table body element
+                        var tableBody = document.getElementById('tableBody');
+        
+                        // Process each row and insert data into the table
+                        rows.forEach(row => {
+                            // Split the row into columns
+                            var columns = row.split(',');
+        
+                            // Create a new row element
+                            var newRow = document.createElement('tr');
+        
+                            // Process each column and insert data into the row
+                            columns.forEach((col, index) => {
+                                // Create a new cell element
+                                var newCell = document.createElement('td');
+        
+                                // Set the cell's text content to the column value
+                                newCell.textContent = col;
+        
+                                // Highlight cells in "Month" columns with values greater than 100
+                                if (index >= 1 && index <= 12) {
+                                    var value = parseInt(col);
+                                    if (!isNaN(value)) {
+                                        if (value > 1000) {
+                                            newCell.classList.add("highlight-red");
+                                        } else if (value > 500) {
+                                            newCell.classList.add("highlight-yellow");
+                                        } else if (value > 100) {
+                                            newCell.classList.add("highlight-green");
+                                        }
+                                    }
+                                }        
+                                // Append the cell to the row
+                                newRow.appendChild(newCell);
+                            });
+        
+                            // Append the row to the table body
+                            tableBody.appendChild(newRow);
+                        });
+                    });
+            }
+        
+            insertCSVData();
+        </script>
+
+	
+	
+
+</body>
+</html>

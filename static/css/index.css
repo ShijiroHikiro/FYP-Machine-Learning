@@ -1,0 +1,607 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #d6ebc3;
+}
+
+.heading {
+    text-align: center;
+    color: #556b2f;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+}
+
+.heading h2{
+  text-align: center;
+  color: black;
+  font-size: 20px;
+}
+
+h4{
+  margin-left: 10px;
+}
+
+.topnav{
+  background-color: #3cb371;
+  overflow: hidden;
+  position: relative;
+  z-index: 9999;
+  
+}
+
+.topnav a{
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+
+.topnav a:hover{
+  background-color: #ddd;
+  color: #deb887;
+}
+
+.topnav a.active{
+  background-color: #2e8b57;
+  color: white;
+}
+
+/*1st page*/
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.form-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;  
+}
+
+.input-wrapper {
+  margin-right: 10px; /* Adjust the margin as needed */
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.input-wrapper input[type="text"] {
+  width: 80px; /* Adjust the width as needed */
+  
+}
+
+.form-row label{
+  margin-right:10px ;
+}
+
+.form-row select, .form-row input[type="text"]
+{
+  padding: 5px;
+}
+
+.form-row input[type="submit"]
+{
+  color: white;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  background-color: rgb(0, 0, 0);
+  width: 200px;
+}
+
+#table1 {
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;  
+  background-color: white;
+}
+
+#table1 th, #table1 td {  
+  padding: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;  
+}
+
+#table1 th {
+  color: white;
+  background-color: #2e8b57;
+
+}
+
+#table1 td{
+  text-align: center;
+  font-weight: normal;
+  font-size: 18px;
+  outline: 0.7px solid black;
+  border: 1.5px solid black;
+}
+
+.highlight2.red {
+  background-color: #F08080;
+}
+
+.highlight2.orange {
+  background-color: #FBCEB1;
+}
+
+.highlight2.yellow {
+  background-color: #FFFFE0;
+}
+
+.highlight2.green {
+  background-color: #ADD8E6;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 5px;
+}
+#table2 {
+  border-collapse: collapse;
+  
+}
+th, td {
+  border: 1px solid black;
+  padding: 5px;
+}
+#table2.indicator-table{
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  background-color: white;  
+  margin-left: 10px;
+  
+}
+
+#table2.indicator-table th,
+#table2.indicator-table td{
+  padding: 8px;
+  text-align: center;
+}
+
+#table2e.indicator-table th {
+  background-color: #f2f2f2;
+}
+
+#table2.indicator-table tbody tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+td.renyai{
+  background-color: #ADD8E6;
+}
+
+td.sederhana{
+  background-color: #FFFFE0;
+}
+
+td.lebat{
+  background-color: #FBCEB1;
+}
+
+td.sangat-lebat{
+  background-color: #F08080;
+}
+
+.box2{
+  border: ridge;
+  float: left;
+  box-shadow: 4px 4px #888;
+  margin-top: 30px;
+  background-color: white;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+ol{
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+
+/*2nd page*/
+
+.outer-wrapper {
+  margin: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+  max-width: fit-content;
+  max-height: fit-content;
+  background-color: white;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: medium;  
+}
+.table-wrapper {
+
+  overflow-y: scroll;
+  overflow-x: scroll;
+  height: fit-content;
+  max-height: 66.4vh;  
+  margin-top: 22px;  
+  margin: 15px;
+  padding-bottom: 20px;
+}
+
+
+table {  
+  min-width: max-content;  
+  border-collapse: separate;
+  border-spacing: 0px;    
+  
+}
+table th{
+  position: sticky; 
+  top: 0px;  
+  background-color: #133b5c;
+  color: rgb(241, 245, 179);  
+  text-align: center;
+  font-weight: normal;
+  font-size: 18px;
+  outline: 0.7px solid black;
+  border: 1.5px solid black;
+
+} 
+
+table th, table td {  
+  padding: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;  
+}
+
+table td {
+  text-align: left;  
+  font-size: 15px;
+  border: 1px solid rgb(177, 177, 177);
+  padding-left: 20px;
+  
+}
+
+tr.highlight-red {
+  background-color: red;
+  color: black;
+  animation: blink 5s infinite;
+}
+
+tr.highlight-green {
+  background-color: rgba(0, 128, 0, 0.575);
+  color: black;
+}
+
+@keyframes blink {
+  0% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+.knn{
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  color: Blue;
+  text-align: center;
+}
+
+form {
+  text-align: center;
+  
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+  font-size: large;  
+}
+
+input[type="text"]{
+  width: 300px;
+  padding: 5px;
+  
+}
+
+input[type="submit"] {
+  padding: 8px 12px;
+  background-color: Black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.alert_flood {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  animation: blink-animation 1s infinite;
+}
+
+@keyframes blink-animation {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.Pon_flood {
+  color: #FFA500;
+  font-size: bold;
+  text-align: center;
+}
+
+.no-flood {
+  color: green;
+  
+}
+
+/*2n page */
+
+.box {
+  border: black;
+  text-align:center;
+  align-items: center;    
+}
+
+.box img { 
+  max-width: 100%;  
+  padding: 10px;  
+  border: 1px solid #ccc;  
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);  
+}
+
+.parent2 {
+  text-align: center;
+  
+}
+
+
+.parent2_1 {
+  text-align: center;
+  
+}
+
+
+.highlight-red {
+  background-color: #fd5c63;
+}
+
+.highlight-yellow {
+  background-color: yellow;
+}
+
+.highlight-green {
+  background-color: #8cc751;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 290px;
+  background-color: #d6ebc3;
+  padding: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+
+
+.footer {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+
+.inline{
+  flex: 1;
+  margin-right: 10px;
+ 
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Add your desired styles below */
+
+.login-container {
+  width: 300px;
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 8px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* CSS for the login pop-up */
+.login-popup {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.login-popup-content {
+  background-color: #ACE1AF;
+  margin: 10% auto;
+  padding: 20px;
+  width: 450px;
+  height: auto;
+  border: 1px solid #888;
+  z-index: 9999;
+}
+
+.close {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+/* CSS for username and password input fields */
+input[type="username"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: large;
+}
+
+input[type="username"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #2196F3;
+}
+
+input[type="username"]::placeholder,
+input[type="password"]::placeholder {
+  color: #999;
+}
+
+.login-popup h2{
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 50px;
+}
+
+.login-popup p{
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+
+.login-button {
+  background-color: #1B4D3E; 
+  color: white;
+  padding: 10px 20px; 
+  border: none; 
+  cursor: pointer; 
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+
+/* third page*/
+
+.third_page h1{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 60px;
+  color: #556b2f;
+}
+
+.isikan h2{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+  text-align: center;
+}
+
+.image-container_isikan {
+  display: flex;
+  justify-content: center;
+}
+
+.figure {
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  font-size: 22px;
+}
+
+.description{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  text-align: justify;
+  margin-left: 20px;
+  margin-right: 20px;  
+}
+
+.isikan h3{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+  text-align: center;
+}

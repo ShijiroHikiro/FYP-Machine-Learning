@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Flood Monitoring</title>
+</head>
+<div class="topnav">
+    <a class="active" href="{{url_for('second_page')}}">Monitor</a>
+	<a class="active" href="{{url_for('index')}}" >Admin</a>	
+    <a class="active" href="{{url_for('third_page')}}">Detail</a>
+    
+</div> 
+
+<!-- Login Pop-up -->
+<div id="loginPopup" class="login-popup" style="display: none;">
+    <div class="login-popup-content">
+        <span class="close" onclick="closeLoginPopup()"></span>
+        <h2>Login</h2>
+        <p>This Page is only for Admin</p>
+        <input type="username" id="Username" placeholder="Enter Username">
+        <input type="password" id="password" placeholder="Enter Password">
+        <button class="login-button" onclick="validateCredentials()">Submit</button>
+        <a class="active" href="{{url_for('second_page')}}">Cancel</a>	        
+        <p id="passwordWarning" style="display: none; color: red;">Incorrect username or password. Please try again.</p>
+    </div>
+</div>
+  
+
+
+<body>
+    <div class="heading">
+        <h1>Welcome To Flood Monitoring & Prediction Using KNN</h1>
+        <br>
+    </div>    	
+
+
+    <div class="knn">        
+        <form action="/predict" method="post" class="form-container">
+            <label for="input_data">PLEASE INSERT DATA RAINFALL</label>
+            <br>
+            <div class="form-row">
+                <div class="input-wrapper">
+                    <label for="year">Date:</label>
+                    <input type="text" id="year" name="year" pattern="\d{2}-\d{2}" required>
+                </div>
+                <div class="input-wrapper">
+                  <label for="month">Month:</label>
+                  <select id="month" name="month" required>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                  </select>
+                </div>
+              </div>              
+            <br>         
+            <div class="form-row">                
+                <input type="text" id="feature1" name="feature1">
+            </div>
+            <br>
+            <div class="form-row">
+                <input type="submit" value="SUBMIT">
+            </div>
+        </form>
+
+        <div class="predict_text">
+            {% if prediction_text is defined and prediction_text %}
+                {% if prediction_text == "Warning! Rainfall has exceeded the limit that has been set, please be prepared." %}
+                    <h3 class="alert_flood">{{ prediction_text }}</h3>
+                {% elif prediction_text == "Potential Flood Alert!" %}
+                    <h3 class="Pon_flood">{{ prediction_text }}</h3>
+                {% elif prediction_text == "No Flood Happen" %}
+                    <h3 class="no-flood">{{ prediction_text }}</h3>
+                {% else %}
+                    <h3>{{ prediction_text }}</h3>
+                {% endif %}
+            {% endif %}
+        </div>
+        
+        <br>      
+        
+    </div> 
+
+    <div class="data-table">
+        <table id="table1" class="data">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Month</th>                    
+                    <th>Data</th>
+                    <!-- Add more column headers as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row['Date'] }}</td>
+                    <td>{{ row['Month'] }}</td>                    
+                    <td class="highlight2">{{ row['Data'] }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <h4>Rainfall of more than 60 mm in a period of 2 to 4 hours (typically) can cause flash flooding. However, monsoon rains for a 
+		long period of time with heavy rain alternating with high intensity in a period of 24 hours.</h4>
+    
+
+    <div class="box2" style="margin-top: 25px;">
+        <ol class="legend horiz" style="padding-right: 17px; padding-left:5px;
+                                        margin-top:20px; margin-bottom:5px; background-color:white;">
+            <p style="text-decoration: underline; font-family:'Times New Roman', Times, serif">Rain Intensity Category (in one hour)</p>
+                <table id="table2" class="indicator-table">
+                     <tbody>
+                        <tr>
+                            <td class="renyai">Renyai</td>
+                            <td>1-10(mm)</td>               
+                        </tr>
+                        <tr>
+                            <td class="sederhana">Sederhana</td>
+                             <td>11-30(mm)</td>
+                             
+                        </tr>
+                        <tr>
+                            <td class="lebat">Lebat</td>
+                            <td>31-60(mm)</td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="sangat-lebat">Sangat Lebat</td>
+                             <td>>60 (mm)</td>
+                             
+                        </tr>
+                     </tbody>
+                </table>
+        </ol>
+    </div>  
+
+    <div class="footer">
+        <p class="inline">Siti Nur Hidayah Binti Azmi</p>
+        <P class="inline">191020971</P>
+        <p class="inline">Fakulti Kejuruteraan & Teknologi Elektronik</p>
+    </div>
+
+    <!--JavaScript functions for login pop-up-->
+    <script>
+        var loginAttempts = 0;
+        var loginPopupTimeout;
+        var isPageActive = true;
+
+        function showLoginPopup() {
+            if (isPageActive && sessionStorage.getItem("isRefreshed") !== "true") {
+                document.getElementById("loginPopup").style.display = "block";
+            }
+        }
+
+        function closeLoginPopup() {
+            document.getElementById("loginPopup").style.display = "none";
+        }
+
+        function validateCredentials() {
+            var usernameInput = document.getElementById("Username").value;
+            var passwordInput = document.getElementById("password").value;
+
+            // Perform username and password validation here
+            if (usernameInput === "staff191020971@gmail.com" && passwordInput === "191020971") {
+                closeLoginPopup();
+            } else {
+                loginAttempts++;
+                    if (loginAttempts === 1) {
+                        document.getElementById("passwordWarning").style.display = "block";
+                }else if (loginAttempts === 2) {
+                    document.getElementById("passwordWarning").innerHTML = "Incorrect username or password. You have one more attempt.";
+                 } else {
+                document.getElementById("passwordWarning").innerHTML = "Incorrect username or password. Please try again later.";
+                document.getElementById("Username").disabled = true; // Disable username input after maximum attempts
+                document.getElementById("password").disabled = true; // Disable password input after maximum attempts
+            }
+        }
+    }
+
+    // Show login pop-up after 5 minutes
+    function showLoginPopupAfterDelay() {
+        showLoginPopup();
+        loginPopupTimeout = setTimeout(showLoginPopup, 5 * 60 * 1000); // 5 minutes delay
+    }
+
+    // Reset the timeout when there is user activity
+    function resetLoginPopupTimeout() {
+        clearTimeout(loginPopupTimeout);
+        if (!isPageActive) {
+            isPageActive = true;
+            showLoginPopupAfterDelay();
+        }
+    }
+
+    // Mark the page as refreshed in session storage
+    function markPageRefreshed() {
+        sessionStorage.setItem("isRefreshed", "true");
+    }
+
+    // Start the initial timeout for login pop-up after 5 minutes
+    showLoginPopupAfterDelay();
+
+    // Add event listeners to detect user activity
+    window.addEventListener('mousemove', resetLoginPopupTimeout);
+    window.addEventListener('keydown', resetLoginPopupTimeout);
+    window.addEventListener('click', resetLoginPopupTimeout);
+    window.addEventListener('scroll', resetLoginPopupTimeout);
+
+    // Mark the page as refreshed when the page is refreshed or navigated away
+    window.addEventListener('beforeunload', markPageRefreshed);
+    </script>    
+    <!-- End Login Popup -->      
+    
+    <script>
+        // Get current date
+        const currentDate = new Date();
+  
+        // Set current year as the value of the 'year' input field
+        document.getElementById('year').value = currentDate.getFullYear();
+
+        const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}-${currentDate.getFullYear().toString().slice(-2)}`;
+
+        // Update the value of the input field with the current date
+        function updateDate() {
+          document.getElementById('year').value = formattedDate;
+        }
+  
+        // Set current month as the selected value of the 'month' dropdown
+        const monthSelect = document.getElementById('month');
+        const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
+
+        // Call the updateDate function when the page finishes loading
+        window.addEventListener('load', updateDate);
+  
+        // Iterate over the options in the 'month' dropdown and set the selected attribute for the current month
+        for (let i = 0; i < monthSelect.options.length; i++) {
+            if (monthSelect.options[i].value === currentMonth) {
+                monthSelect.options[i].selected = true;
+                break;
+            }
+        }
+        
+  
+    </script>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener('DOMContentLoaded', function () {
+          var cells = document.querySelectorAll('#table1 .highlight2');
+      
+          // Loop through the cells and apply conditional formatting
+          cells.forEach(function (cell) {
+            var cellValue = parseFloat(cell.innerText);
+      
+            if (cellValue >= 60) {
+                cell.classList.add('red');
+            } else if (cellValue >= 31 && cellValue <= 60) {
+                cell.classList.add('orange');
+            } else if (cellValue >= 11 && cellValue <= 30) {
+                cell.classList.add('yellow');
+            } else if (cellValue >= 1 && cellValue <= 10) {
+                cell.classList.add('green');
+            }
+          });
+        });
+    </script>      
+   
+
+</body>
+</html>

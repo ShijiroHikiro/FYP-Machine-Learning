@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Flood Monitoring</title>
+</head>
+<div class="topnav">
+    <a class="active" href="{{url_for('second_page')}}">Monitor</a>
+	<a class="active" href="{{url_for('index')}}" >Admin</a>	
+    <a class="active" href="{{url_for('third_page')}}">Detail</a>
+</div> 
+
+<body>
+
+    <div class="third_page">
+        <h1>EXPLANATION OF THE PROJECT</h1>
+    </div>
+    <br>
+    <div class="isikan">
+        <h2>TRAINING & TESTING DIAGRAM</h2>
+        <div class="image-container_isikan">
+            <img src="template\pic\testntrain.jpg" width="800" height="500">
+        </div>
+        <p class="figure">Figure 1: Process of Train and Test for Data of Rainfall</p>
+        <p class="description">The diagram above shows the process of data used for this project through several important 
+            processes before making predictions. Among the processes involved is the pre-processing of the data 
+            and then the data will be divided into two, namely testing and training the data to better 
+            perform predictions and finally the data is ready for the next step.</p>
+        <br>
+        <h2>PREDICTION DIAGRAM</h2>
+        <div class="image-container_isikan">
+            <img src="template\pic\production2.jpg" width="800" height="500">
+        </div>
+        <p class="figure">Figure 2: Diagram of Prediction Using Web</p>
+        <p class="description">Figure 2 shows the flow for the raw data going through the 
+            preparation step where it is designed and will be built and work with the original 
+            raw dataset. In this process we will use selective machine learning, 
+            this will be discussed in the next section. Once the new data is entered it will be built 
+            and worked with the original raw dataset where it will go through pre-processing along 
+            with the selected fitted model and finally produce a good prediction. These model will be saved using
+            pickle extension and apply to flask.</p>
+        <br>
+        <br>
+        <h3>Criteria of Choosing Model for Prediction</h3>
+        <p class="description">The project uses two types of machine learning namely k-nearest neighbor classification and decision trees. The use of both models is to make comparisons and be able to choose which model is better 
+            and more accurate in making predictions. For the selection of a good and suitable model to make predictions using this website requires several evaluations, 
+            namely evaluation metrics and ROC Curve. There are several elements that are important 
+            and taken into account in the evaluation of metrics, namely precision, f1-score, recall.</p>
+        <br>
+        <p class="description">1-Precision: the quality of a positive prediction made by the model. Precision refers to the number of true positives divided by the total number of positive predictions 
+            (i.e., the number of true positives plus the number of false positives)</p>
+            <br>
+            <div class="image-container_isikan">
+                <img src="template\pic\precision.png" width="400" height="100">
+            </div>
+            <p class="figure">Figure 3: Formula of Precision</p>
+        <br>
+        <p class="description">2-F1-Score: combining the precision and recall of the model, and 
+            it is defined as the harmonic mean of the model’s precision and recall.</p>
+            <br>
+            <div class="image-container_isikan">
+                <img src="template\pic\F1 skor.png" width="400" height="100">
+            </div>
+            <p class="figure">Figure 4: Formula of F1-Score</p>
+        <br>
+        <p class="description">3-Recall: the percentage of data samples that a machine learning model 
+            correctly identifies as belonging to a class of interest—the “positive class”—out 
+            of the total samples for that class.</p>
+            <br>
+            <div class="image-container_isikan">
+                <img src="template\pic\Recall.png" width="400" height="100">
+            </div>
+            <p class="figure">Figure 5: Formula of Recall</p>
+        <br>
+        <p class="description">4-ROC Curve: ROC curve (receiver operating characteristic curve) 
+            is a graph showing the performance of a classification model at all classification thresholds.</p>
+            <br>
+            <div class="image-container_isikan">
+                <img src="template\pic\1_He2ZPgzmz9tRfLQFqxVTRg.png" width="400" height="300">
+            </div>
+            <p class="figure">Figure 5: Example of ROC Curve</p>
+        <br>
+    </div>
+
+    <div class="footer">
+        <p class="inline">Siti Nur Hidayah Binti Azmi</p>
+        <P class="inline">191020971</P>
+        <p class="inline">Fakulti Kejuruteraan & Teknologi Elektronik</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+__pycache__
+env
+js
+venv
+src
+.vscode
+.index.html
+License.pdf
+ReadME.txt
+telegram.py
