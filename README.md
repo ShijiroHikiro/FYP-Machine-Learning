@@ -71,14 +71,3 @@ The diagram above illustrates the system's architecture. The process flow is as 
 - KNN's higher ROC value signifies its superiority in classification performance over the DT model.
 
 ---
-
-## Summary
-
-- **Accuracy:** KNN is more accurate than the Decision Tree model (87.5% vs. 79.17%).
-- **ROC Curve:** KNN demonstrates a higher ROC value, indicating better performance in identifying true positives and minimizing false positives compared to the Decision Tree model.
-- **Overall Performance:** KNN outperforms Decision Tree classification in both accuracy and ROC curve analysis, making it a more effective model for the given dataset.
-
-
-
-
-
